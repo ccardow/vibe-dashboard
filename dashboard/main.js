@@ -1,3 +1,18 @@
+// Activity Log Logic
+const logActivity = (message) => {
+    const log = document.getElementById('activity-log');
+    if (!log) return;
+    const item = document.createElement('div');
+    item.className = 'log-item';
+    item.textContent = `> ${new Date().toLocaleTimeString()}: ${message}`;
+    log.prepend(item);
+    
+    // Keep log concise
+    if (log.children.length > 10) {
+        log.lastChild.remove();
+    }
+};
+
 // Theme Toggle Logic
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
@@ -31,21 +46,6 @@ if (savedTheme === 'light') {
     body.classList.add('light-theme');
     themeToggle.textContent = '🌑';
 }
-
-// Activity Log Logic
-const logActivity = (message) => {
-    const log = document.getElementById('activity-log');
-    if (!log) return;
-    const item = document.createElement('div');
-    item.className = 'log-item';
-    item.textContent = `> ${new Date().toLocaleTimeString()}: ${message}`;
-    log.prepend(item);
-    
-    // Keep log concise
-    if (log.children.length > 10) {
-        log.lastChild.remove();
-    }
-};
 
 // Simulate background monitoring
 setInterval(() => {
