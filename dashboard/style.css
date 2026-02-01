@@ -1,21 +1,25 @@
 :root {
+    /* High-Vibe Dark Theme */
     --bg: #0a0a0c;
     --card-bg: rgba(255, 255, 255, 0.03);
-    --border: rgba(255, 255, 255, 0.1);
-    --accent: #4f46e5;
+    --border: rgba(255, 255, 255, 0.08);
+    --accent: #6366f1; /* Indigo */
+    --accent-glow: rgba(99, 102, 241, 0.2);
     --text: #f8fafc;
     --text-muted: #94a3b8;
-    --card-hover: rgba(255, 255, 255, 0.05);
+    --card-hover: rgba(255, 255, 255, 0.06);
 }
 
 body.light-theme {
-    --bg: #f8fafc;
-    --card-bg: rgba(0, 0, 0, 0.03);
-    --border: rgba(0, 0, 0, 0.1);
+    /* Soft Paper Light Theme */
+    --bg: #fdfdfd;
+    --card-bg: rgba(0, 0, 0, 0.02);
+    --border: rgba(0, 0, 0, 0.06);
     --accent: #4f46e5;
-    --text: #0f172a;
+    --accent-glow: rgba(79, 70, 229, 0.1);
+    --text: #1e293b;
     --text-muted: #64748b;
-    --card-hover: rgba(0, 0, 0, 0.05);
+    --card-hover: rgba(0, 0, 0, 0.04);
 }
 
 * {
