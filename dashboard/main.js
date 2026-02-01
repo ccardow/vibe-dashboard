@@ -34,7 +34,7 @@ const updateLiveVibes = async () => {
     logActivity("Koda pulling live vibes from search and weather tools...");
     logActivity("YouTube brief updated: OpenClaw crosses 106k stars!");
     logActivity("X Trends synced: #CanadaTariffs and #OpenClaw viral");
-    logActivity("Vibe coding trends identified: Antigravity + OpenClaw");
+    logActivity("System Vibe: CPU and Battery stats pushed to UI");
 };
 
 updateLiveVibes();
