@@ -1,5 +1,75 @@
+// Initialization
+document.addEventListener('DOMContentLoaded', () => {
+    updateClock();
+    setInterval(updateClock, 1000);
+    fetchWeather();
+    fetchVerse();
+    logActivity("Vibe Dashboard v1.2 Proactive Initialized");
+});
+
+// Real-time Clock
+function updateClock() {
+    const clockEl = document.getElementById('live-clock');
+    if (!clockEl) return;
+    const now = new Date();
+    clockEl.textContent = now.toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+}
+
+// Weather Logic (Steinbach, MB)
+async function fetchWeather() {
+    try {
+        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=49.5258&longitude=-96.6839&current_weather=true');
+        const data = await response.json();
+        const temp = Math.round(data.current_weather.temperature);
+        document.querySelector('.temp').textContent = `${temp}°C`;
+        logActivity(`Weather updated: ${temp}°C in Steinbach`);
+    } catch (e) {
+        console.error("Weather fetch failed", e);
+    }
+}
+
+// Bible Verse Logic
+async function fetchVerse() {
+    try {
+        const response = await fetch('https://labs.bible.org/api/?passage=random&type=json');
+        const data = await response.json();
+        const verse = data[0];
+        document.querySelector('.verse-text').textContent = `"${verse.text}"`;
+        document.querySelector('.verse-ref').textContent = `${verse.bookname} ${verse.chapter}:${verse.verse}`;
+        logActivity(`Daily inspiration synced: ${verse.bookname}`);
+    } catch (e) {
+        console.error("Verse fetch failed", e);
+    }
+}
+
+// Theme Toggle Logic
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('light-theme');
+        body.classList.toggle('dark-theme');
+        
+        // Update button icon
+        const isLight = body.classList.contains('light-theme');
+        themeToggle.textContent = isLight ? '🌑' : '🌓';
+        
+        // Save preference
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+}
+
+// Load saved theme
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') {
+    body.classList.remove('dark-theme');
+    body.classList.add('light-theme');
+    if (themeToggle) themeToggle.textContent = '🌑';
+}
+
 // Activity Log Logic
-const logActivity = (message) => {
+function logActivity(message) {
     const log = document.getElementById('activity-log');
     if (!log) return;
     const item = document.createElement('div');
@@ -11,53 +81,16 @@ const logActivity = (message) => {
     if (log.children.length > 10) {
         log.lastChild.remove();
     }
-};
-
-// Theme Toggle Logic
-const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
-
-themeToggle.addEventListener('click', () => {
-    body.classList.toggle('light-theme');
-    body.classList.toggle('dark-theme');
-    
-    // Update button icon
-    const isLight = body.classList.contains('light-theme');
-    themeToggle.textContent = isLight ? '🌑' : '🌓';
-    
-    // Save preference
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
-});
-
-// Update Dashboard with Live Data from Koda
-const updateLiveVibes = async () => {
-    logActivity("Koda pulling live vibes from search and weather tools...");
-    logActivity("YouTube brief updated: OpenClaw crosses 106k stars!");
-    logActivity("X Trends synced: #CanadaTariffs and #OpenClaw viral");
-    logActivity("System Vibe: CPU and Battery stats pushed to UI");
-};
-
-updateLiveVibes();
-
-// Load saved theme
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'light') {
-    body.classList.remove('dark-theme');
-    body.classList.add('light-theme');
-    themeToggle.textContent = '🌑';
 }
 
-// Simulate background monitoring
+// Keep simulation for other vibes
 setInterval(() => {
     const events = [
-        "Monitoring Steinbach weather...",
-        "Syncing Bible verse of the day",
-        "Fetching Trump X-post updates",
-        "Analyzing US/Canada relations",
-        "Ready for next command from Cam"
+        "Analyzing US/Canada trade sentiment...",
+        "Scanning X for @realDonaldTrump updates...",
+        "Optimizing local memory buffers",
+        "System: Heartbeat OK"
     ];
     const randomEvent = events[Math.floor(Math.random() * events.length)];
     logActivity(randomEvent);
-}, 8000);
-
-console.log("Vibe Dashboard v1.1 Initialized");
+}, 15000);

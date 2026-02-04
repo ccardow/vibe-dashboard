@@ -3,92 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibe Dashboard | Moltbot</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Pi Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark-theme">
     <nav class="glass-nav">
-        <div class="logo">Moltbot 🦞</div>
+        <div class="logo">PI.OS</div>
         <div class="nav-controls">
-            <button id="theme-toggle" class="icon-btn" title="Toggle Light/Dark Mode">🌓</button>
             <div class="status-pill">System Online</div>
+            <button class="icon-btn" id="theme-toggle">🌓</button>
         </div>
     </nav>
 
     <main class="dashboard-grid">
         <header class="hero">
-            <h1>Vibe Dashboard</h1>
-            <p>Real-time agentic insights and system status.</p>
+            <h1>Good evening, Cam.</h1>
+            <div id="live-clock" style="font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; color: var(--accent); margin-bottom: 1rem;"></div>
+            <p style="color: var(--text-muted)">All systems operational. Waiting for commands.</p>
         </header>
 
-        <!-- Weather Section -->
+        <!-- Weather -->
         <section class="card weather-card">
-            <h3>Winnipeg, MB</h3>
-            <div id="weather-temp" class="temp">-8°C</div>
-            <p id="weather-desc" class="label">Snowing 🌨</p>
+            <h3>Steinbach Weather</h3>
+            <div class="temp">--°C</div>
+            <p class="label">Syncing...</p>
         </section>
 
-        <!-- Bible Verse Section -->
+        <!-- Verse -->
         <section class="card verse-card">
-            <h3>Verse of the Day</h3>
-            <div class="verse-content">
-                <p class="verse-text">"Say not, 'Why were the former days better than these?' For it is not from wisdom that you ask this."</p>
-                <p class="verse-ref">— Ecclesiastes 7:10</p>
-            </div>
+            <h3>Bible Verse</h3>
+            <p class="verse-text">"Loading inspiration..."</p>
+            <p class="verse-ref"></p>
         </section>
 
-        <!-- YouTube Section -->
-        <section class="card youtube-card">
-            <h3>Morning Brief: YouTube</h3>
+        <!-- Quick Links -->
+        <section class="card">
+            <h3>Quick Links</h3>
             <ul class="link-list">
-                <li><a href="https://www.youtube.com/watch?v=OA0uha3KFYg" target="_blank">Antigravity: Google's New FREE AI Vibe Coder is INSANE!</a></li>
-                <li><a href="https://www.youtube.com/shorts/Gz19NixVOb0" target="_blank">Vibe Coding 2026: Build Anything with Antigravity</a></li>
-                <li><a href="https://www.youtube.com/results?search_query=OpenClaw+106k+stars+launch" target="_blank">OpenClaw Phenomenon: 106k Stars in 2 Days</a></li>
+                <li><a href="https://crocuscounselling.com" target="_blank">Crocus Counselling</a></li>
+                <li><a href="https://github.com" target="_blank">GitHub Projects</a></li>
+                <li><a href="https://x.com" target="_blank">X (Twitter)</a></li>
             </ul>
         </section>
 
-        <!-- Politics Section -->
-        <section class="card politics-card">
-            <h3>US/Canada Politics</h3>
-            <ul id="politics-list" class="link-list">
-                <li><a href="https://www.reuters.com/business/aerospace-defense/trump-says-us-decertifying-bombardier-global-express-until-canada-certifies-2026-01-30/" target="_blank">Trump threatens 50% tariff on Canadian aircraft</a></li>
-                <li><a href="https://www.foxnews.com/politics/trump-warns-canada-100-percent-tariffs-if-becomes-chinas-drop-off-port-new-potential-trade-deal" target="_blank">Trump warns of 100% tariffs over China deal</a></li>
-                <li><a href="https://www.washingtonpost.com/politics/2026/01/30/us-trump-canada-aircraft-tariff/" target="_blank">President accuses Canada of blocking Gulfstream sales</a></li>
-            </ul>
+        <!-- US/Canada Status -->
+        <section class="card">
+            <h3>US / Canada Relations</h3>
+            <div class="stat-row">
+                <span class="label">Sentiment</span>
+                <span class="value">Analyzing...</span>
+            </div>
+            <div class="stat-row">
+                <span class="label">Active News</span>
+                <span class="value">Live</span>
+            </div>
         </section>
 
-        <!-- Trends Section -->
-        <section class="card trends-card">
-            <h3>Trending on X</h3>
-            <ul id="trends-list" class="link-list">
-                <li><a href="https://x.com/search?q=Trump+Canada+Tariffs" target="_blank">#CanadaTariffs: Trump escalates feud</a></li>
-                <li><a href="https://x.com/search?q=OpenClaw+Vibe+Coding" target="_blank">#OpenClaw: 100k+ stars viral launch</a></li>
-                <li><a href="https://x.com/search?q=Google+Antigravity+AI" target="_blank">#Antigravity: Google's Vibe Coding tool</a></li>
-                <li><a href="https://x.com/search?q=Moltbot+AI" target="_blank">#Moltbot: The future of Agentic UI</a></li>
-            </ul>
-        </section>
-
-        <!-- Activity Section -->
+        <!-- Activity Log -->
         <section class="card activity-card">
-            <h3>Recent Activity</h3>
+            <h3>System Activity</h3>
             <div class="activity-log" id="activity-log">
-                <div class="log-item">Dashboard Initialized</div>
-            </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section class="card stats-card">
-            <h3>System Vibe</h3>
-            <div class="stat-row">
-                <span class="label">CPU Load:</span>
-                <span id="cpu-load" class="value">0.8%</span>
-            </div>
-            <div class="stat-row">
-                <span class="label">Battery:</span>
-                <span id="bat-status" class="value">36% (Charging)</span>
+                <!-- Log items injected by main.js -->
             </div>
         </section>
     </main>
