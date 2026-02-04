@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateClock, 1000);
     fetchWeather();
     fetchVerse();
-    logActivity("Vibe Dashboard v1.2 Proactive Initialized");
+    fetchVibes();
+    logActivity("Vibe Dashboard v1.3 Dynamic Initialized");
 });
 
 // Real-time Clock
@@ -13,6 +14,22 @@ function updateClock() {
     if (!clockEl) return;
     const now = new Date();
     clockEl.textContent = now.toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+}
+
+// Local Vibe Sync (Politics/News)
+async function fetchVibes() {
+    try {
+        const response = await fetch('vibes.json');
+        const data = await response.json();
+        
+        if (data.politics) {
+            document.getElementById('politics-headline').textContent = data.politics.headline;
+            document.getElementById('politics-summary').textContent = data.politics.summary;
+            logActivity(`Politics card synced: ${data.politics.source}`);
+        }
+    } catch (e) {
+        console.log("Local vibes.json not found, waiting for agent sync.");
+    }
 }
 
 // Weather Logic (Steinbach, MB)
